@@ -1,28 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Blog.module.css";
 import Link from "next/link";
 
-const blog = () => {
+//Step1: Collect all files from blogdata directory
+//Step2: Iterate and Display them
+const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/api/blogs")
+      .then((a) => {
+        return a.json();
+      })
+      .then((parsed) => {
+        setBlogs(parsed);
+      });
+  }, []);
+
   return (
     <div>
       <main className={styles.main}>
-        <div className="blogItem1">
-          <Link href={"blogpost/learn-javascript"}>
-            <h3>How to learn JavaScript in 2022?</h3>
-          </Link>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur commodi consectetur eos.</p>
-        </div>
-        <div className="blogItem2">
-          <h3>How to learn JavaScript in 2022?</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur commodi consectetur eos.</p>
-        </div>
-        <div className="blogItem3">
-          <h3>How to learn JavaScript in 2022?</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur commodi consectetur eos.</p>
-        </div>
+        {blogs.map((blogitem) => {
+          return (
+            <div key={blogitem.slug}>
+              <Link href={`blogpost/${blogitem.slug}`}>
+                <h3>{blogitem.title}</h3>
+              </Link>
+              <p className={styles.blogItemp}>{blogitem.content.substr(0, 140)}...</p>
+            </div>
+          );
+        })}
       </main>
     </div>
   );
 };
 
-export default blog;
+export default Blog;
