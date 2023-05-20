@@ -4,20 +4,29 @@ import { useRouter } from "next/router";
 
 //Step1: Find the file Corresponding to the slug
 //Step2: Populate them inside the page
-const Slug = () => {
-  const [blog, setBlog] = useState();
+
+export const getServerSideProps = async (context) => {
+  const { slug } = context.query;
+  const data = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
+  const myBlog = await data.json();
+  return { props: { myBlog } };
+};
+
+const Slug = (props) => {
+  const [blog, setBlog] = useState(props.myBlog);
   const router = useRouter();
-  useEffect(() => {
-    if (!router.isReady) return;
-    const { slug } = router.query;
-    fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
-      .then((a) => {
-        return a.json();
-      })
-      .then((parsed) => {
-        setBlog(parsed);
-      });
-  }, [router.isReady]);
+
+  // useEffect(() => {
+  //   if (!router.isReady) return;
+  //   const { slug } = router.query;
+  //   fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
+  //     .then((a) => {
+  //       return a.json();
+  //     })
+  //     .then((parsed) => {
+  //       setBlog(parsed);
+  //     });
+  // }, [router.isReady]);
 
   return (
     <div className={styles.container}>
