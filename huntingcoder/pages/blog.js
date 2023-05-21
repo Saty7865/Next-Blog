@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Blog.module.css";
 import Link from "next/link";
-import * as fs from "node:fs";
 
 //Step1: Collect all files from blogdata directory
 //Step2: Iterate and Display them
 
-export const getStaticProps = async (context) => {
-  let data = await fs.promises.readdir("blogdata");
-  // console.log(data)
-  let myfile;
-  let allBlogs = [];
-
-  for (let index = 0; index < data.length; index++) {
-    const item = data[index];
-    myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
-    // console.log(myfile)
-    allBlogs.push(JSON.parse(myfile));
-  }
-
+export const getServerSideProps = async () => {
+  const data = await fetch("http://localhost:3000/api/blogs");
+  const allBlogs = await data.json();
+  // fetch("http://localhost:3000/api/blogs")
+  //     .then((a) => {
+  //       return a.json();
+  //     })
+  //     .then((parsed) => {
+  //       setBlogs(parsed);
+  //     });
   return { props: { allBlogs } };
 };
 
 const Blog = (props) => {
   const [blogs, setBlogs] = useState(props.allBlogs);
+  // useEffect(() => {
+  // }, []);
 
   return (
     <div>
