@@ -8,20 +8,12 @@ import Link from "next/link";
 export const getServerSideProps = async () => {
   const data = await fetch("http://localhost:3000/api/blogs");
   const allBlogs = await data.json();
-  // fetch("http://localhost:3000/api/blogs")
-  //     .then((a) => {
-  //       return a.json();
-  //     })
-  //     .then((parsed) => {
-  //       setBlogs(parsed);
-  //     });
+
   return { props: { allBlogs } };
 };
 
 const Blog = (props) => {
   const [blogs, setBlogs] = useState(props.allBlogs);
-  // useEffect(() => {
-  // }, []);
 
   return (
     <div>
@@ -32,7 +24,7 @@ const Blog = (props) => {
               <Link href={`blogpost/${blogitem.slug}`}>
                 <h3>{blogitem.title}</h3>
               </Link>
-              <p className={styles.blogItemp}>{blogitem.content.substr(0, 140)}...</p>
+              <p className={styles.blogItemp}>{blogitem.metadesc}...</p>
             </div>
           );
         })}

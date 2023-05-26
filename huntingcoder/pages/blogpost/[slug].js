@@ -7,33 +7,26 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.query;
+
   const data = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
   const myBlog = await data.json();
+
   return { props: { myBlog } };
 };
 
 const Slug = (props) => {
   const [blog, setBlog] = useState(props.myBlog);
-  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!router.isReady) return;
-  //   const { slug } = router.query;
-  //   fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
-  //     .then((a) => {
-  //       return a.json();
-  //     })
-  //     .then((parsed) => {
-  //       setBlog(parsed);
-  //     });
-  // }, [router.isReady]);
+  function createMarkup(content) {
+    return { __html: content };
+  }
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1>{blog && blog.title}</h1>
         <hr />
-        <div>{blog && blog.content}</div>
+        {blog && <div dangerouslySetInnerHTML={createMarkup(blog.content)}></div>}
       </main>
     </div>
   );
