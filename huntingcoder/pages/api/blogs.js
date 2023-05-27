@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
 
 export default async function handler(req, res) {
-  let data = await fs.promises.readdir(process.cwd());
+  let data = await fs.promises.readdir("../../blogdata");
   let allCount = data.length;
   let myfile;
   let allBlogs = [];
