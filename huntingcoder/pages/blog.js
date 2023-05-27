@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 //Step2: Iterate and Display them
 
 export const getServerSideProps = async () => {
-  const data = await fetch("http://localhost:3000/api/blogs?count=5");
+  const data = await fetch("http://127.0.0.1:3000/api/blogs?count=5");
   const allBlogsObject = await data.json();
 
   return { props: { allBlogsObject } };
@@ -18,7 +18,7 @@ const Blog = (props) => {
   const [count, setCount] = useState(3);
 
   const fetchData = async () => {
-    const d = await fetch(`http://localhost:3000/api/blogs?count=${count + 1}`);
+    const d = await fetch(`http://127.0.0.1:3000/api/blogs?count=${count + 1}`);
     setCount(count + 1);
     const data = await d.json();
     setBlogs(data.allBlogs);
