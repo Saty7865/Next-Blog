@@ -11,3 +11,13 @@
 .blogItemp {
   max-width: 45vw;
 }
+
+.btn {
+  color: white;
+  background-color: black;
+  padding: 7px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 9px;
+  font-size: 12px;
+}

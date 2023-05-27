@@ -19,7 +19,7 @@ const Contact = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        alert("Thnaks for contacting us");
+        alert("Thanks for contacting us");
         setphone("");
         setname("");
         setdesc("");
@@ -50,27 +50,27 @@ const Contact = () => {
           <label htmlFor="name" className={styles.formlabel}>
             Enter your name
           </label>
-          <input type="text" value={name} onChange={handleChange} className="form-control" id="name" name="name" aria-describedby="emailHelp" />
+          <input className={styles.input} type="text" value={name} onChange={handleChange} id="name" name="name" aria-describedby="emailHelp" />
         </div>
         <div className={styles.mb3}>
           <label htmlFor="email" className={styles.formlabel}>
             Email address
           </label>
-          <input type="email" value={email} onChange={handleChange} className="form-control" id="email" name="email" aria-describedby="emailHelp" />
+          <input className={styles.input} type="email" value={email} onChange={handleChange} id="email" name="email" aria-describedby="emailHelp" />
         </div>
         <div className={styles.mb3}>
           <label htmlFor="phone" className={styles.formlabel}>
             Phone
           </label>
-          <input type="phone" value={phone} onChange={handleChange} className="form-control" id="phone" name="phone" aria-describedby="emailHelp" />
+          <input className={styles.input} type="phone" value={phone} onChange={handleChange} id="phone" name="phone" aria-describedby="emailHelp" required />
         </div>
         <div className={styles.mb3}>
           <label htmlFor="desc" className={styles.formlabel}>
-            Elaborate your concerns here
+            Elaborate your concern
           </label>
-          <textarea value={desc} onChange={handleChange} className="form-control" placeholder="Write your concern here" id="desc" name="desc"></textarea>
+          <textarea className={styles.input} value={desc} onChange={handleChange} id="desc" name="desc"></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={styles.btn}>
           Submit
         </button>
       </form>
