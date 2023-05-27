@@ -11,3 +11,9 @@
 .container {
   padding: 0 22rem;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+}

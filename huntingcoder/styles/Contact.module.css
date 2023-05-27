@@ -29,3 +29,10 @@
   margin-bottom: 9px;
   font-size: 12px;
 }
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 88vw;
+    margin: auto;
+  }
+}

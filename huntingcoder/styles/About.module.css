@@ -6,3 +6,10 @@
 .container h1 {
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .container {
+    margin: 40px auto;
+    max-width: 90vw;
+  }
+}

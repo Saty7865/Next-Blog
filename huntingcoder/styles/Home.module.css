@@ -107,13 +107,6 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
 .mainnav ul {
   display: flex;
   justify-content: center;
@@ -159,4 +152,10 @@
 .p {
   margin: 16px 0;
   margin-top: 3px;
+}
+
+@media (max-width: 600px) {
+  .mainnav ul li {
+    margin: 0 16px;
+  }
 }
