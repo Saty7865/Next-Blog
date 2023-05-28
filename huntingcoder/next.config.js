@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
-}
-experimental: { 
-    nftTracing: true;
+  experimental: {
+    nftTracing: true,
+  },
 }
